@@ -9,5 +9,5 @@ import com.merttoptas.botcaampmoviedb.data.model.ApiError
 sealed class DataState<T> {
     data class Success<T>(val data: T) : DataState<T>()
     data class Error<T>(val error: ApiError?) : DataState<T>()
-    data class Loading<T>(val data: T? = null) : DataState<T>()
+    class Loading<T> : DataState<T>()
 }
