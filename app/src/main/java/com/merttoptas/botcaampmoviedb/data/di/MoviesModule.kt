@@ -3,6 +3,8 @@ package com.merttoptas.botcaampmoviedb.data.di
 import com.merttoptas.botcaampmoviedb.data.remote.api.MoviesService
 import com.merttoptas.botcaampmoviedb.data.remote.source.MoviesRemoteDataSource
 import com.merttoptas.botcaampmoviedb.data.remote.source.impl.MoviesRemoteDataSourceImpl
+import com.merttoptas.botcaampmoviedb.domain.repository.MoviesRepository
+import com.merttoptas.botcaampmoviedb.domain.repository.impl.MoviesRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +28,9 @@ class MoviesModule {
     @Provides
     fun provideMoviesRemoteDataSource(moviesService: MoviesService): MoviesRemoteDataSource =
         MoviesRemoteDataSourceImpl(moviesService)
+
+    @Singleton
+    @Provides
+    fun provideMoviesRepository(moviesRemoteDataSource: MoviesRemoteDataSource): MoviesRepository =
+        MoviesRepositoryImpl(moviesRemoteDataSource)
 }
