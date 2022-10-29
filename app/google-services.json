@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "182597404188",
+    "project_id": "pazarama-bootcamp-f662c",
+    "storage_bucket": "pazarama-bootcamp-f662c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182597404188:android:d2a54e0e1730ee119401d9",
+        "android_client_info": {
+          "package_name": "com.merttoptas.botcaampmoviedb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182597404188-ai1iisg2tfrr1a7cqi446nc1rqt2cehc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.merttoptas.botcaampmoviedb",
+            "certificate_hash": "e6a14fdb3211666580dfebc08695737a3c8a786a"
+          }
+        },
+        {
+          "client_id": "182597404188-k353vih8bn0827jukhh378tkhbbl62vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0qT9ToEAvFKhXCZ8imkXOB5ziWQGBWQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182597404188-k353vih8bn0827jukhh378tkhbbl62vt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

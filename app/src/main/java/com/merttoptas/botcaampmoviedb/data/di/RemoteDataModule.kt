@@ -1,5 +1,6 @@
 package com.merttoptas.botcaampmoviedb.data.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.merttoptas.botcaampmoviedb.data.interceptor.AuthInterceptor
 import com.merttoptas.botcaampmoviedb.data.remote.utils.Constants
 import dagger.Module
@@ -57,5 +58,9 @@ class RemoteDataModule {
     @Provides
     @Singleton
     fun provideGsonConverterFactory() = GsonConverterFactory.create()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseService() = FirebaseAuth.getInstance()
 
 }
