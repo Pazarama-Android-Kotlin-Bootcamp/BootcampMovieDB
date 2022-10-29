@@ -22,7 +22,7 @@ class MoviesModule {
 
     @Singleton
     @Provides
-    fun provideMoviesServiceSSS(retrofit: Retrofit) = retrofit.create(MoviesService::class.java)
+    fun provideMoviesService(retrofit: Retrofit) = retrofit.create(MoviesService::class.java)
 
     @Singleton
     @Provides
