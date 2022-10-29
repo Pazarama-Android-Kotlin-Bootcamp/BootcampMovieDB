@@ -32,6 +32,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -87,5 +92,10 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //ViewPager2
+    implementation("androidx.viewpager2:viewpager2:$viewpager_version")
+
+    implementation("androidx.datastore:datastore-preferences:$datastore_version")
 
 }
