@@ -4,6 +4,7 @@ import com.merttoptas.botcaampmoviedb.data.model.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Created by merttoptas on 26.10.2022.
@@ -11,7 +12,7 @@ import retrofit2.http.Path
 
 interface MoviesService {
     @GET("movie/popular")
-    suspend fun getPopularMovies(): Response<PopularResponse>
+    suspend fun getPopularMovies(@Query("page") page: Int): Response<PopularResponse>
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(): Response<TopRatedResponse>

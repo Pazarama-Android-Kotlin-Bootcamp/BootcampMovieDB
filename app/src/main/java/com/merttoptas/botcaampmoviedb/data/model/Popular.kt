@@ -3,7 +3,7 @@ package com.merttoptas.botcaampmoviedb.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class Popular(
     @SerializedName("adult")
     val adult: Boolean?,
     @SerializedName("backdrop_path")

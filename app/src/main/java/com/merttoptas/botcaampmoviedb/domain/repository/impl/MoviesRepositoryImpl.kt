@@ -1,6 +1,7 @@
 package com.merttoptas.botcaampmoviedb.domain.repository.impl
 
 import com.merttoptas.botcaampmoviedb.data.model.MovieDetailResponse
+import com.merttoptas.botcaampmoviedb.data.model.PopularResponse
 import com.merttoptas.botcaampmoviedb.data.remote.source.MoviesRemoteDataSource
 import com.merttoptas.botcaampmoviedb.data.remote.utils.DataState
 import com.merttoptas.botcaampmoviedb.domain.repository.MoviesRepository
@@ -15,5 +16,9 @@ class MoviesRepositoryImpl @Inject constructor(private val moviesRemoteDataSourc
     MoviesRepository {
     override suspend fun getMovieDetail(movieId: Int): Flow<DataState<MovieDetailResponse>> {
         return moviesRemoteDataSource.getMovieDetail(movieId)
+    }
+
+    override suspend fun getPopularMovies(page: Int): Flow<DataState<PopularResponse>> {
+        return moviesRemoteDataSource.getPopularMovies(page)
     }
 }
