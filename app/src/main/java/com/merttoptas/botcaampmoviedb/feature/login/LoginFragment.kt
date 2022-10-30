@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.merttoptas.botcaampmoviedb.R
 import com.merttoptas.botcaampmoviedb.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class LoginFragment : Fragment() {
     private val viewModel by viewModels<LoginViewModel>()
     private lateinit var binding: FragmentLoginBinding
+    private var navController: androidx.navigation.NavController? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = findNavController()
 
         lifecycleScope.launchWhenResumed {
             launch {
@@ -54,6 +57,9 @@ class LoginFragment : Fragment() {
                 binding.etPasswordLogin.text.trim().toString()
             )
         }
-    }
 
+        binding.btnRegister.setOnClickListener {
+            navController?.navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
 }

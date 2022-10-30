@@ -1,6 +1,7 @@
 package com.merttoptas.botcaampmoviedb.data.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.merttoptas.botcaampmoviedb.data.interceptor.AuthInterceptor
 import com.merttoptas.botcaampmoviedb.data.remote.utils.Constants
 import dagger.Module
@@ -63,4 +64,7 @@ class RemoteDataModule {
     @Singleton
     fun provideFirebaseService() = FirebaseAuth.getInstance()
 
+    @Provides
+    @Singleton
+    fun provideFirebaseFireStore() = FirebaseFirestore.getInstance()
 }
