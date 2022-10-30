@@ -4,18 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.merttoptas.botcaampmoviedb.data.local.DataStoreManager
+import com.merttoptas.botcaampmoviedb.domain.usecase.login.LoginUseCase
+import com.merttoptas.botcaampmoviedb.domain.usecase.login.LoginUseCaseParams
+import com.merttoptas.botcaampmoviedb.domain.usecase.login.LoginUseCaseState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val dataStoreManager: DataStoreManager,
-    private val firebaseAuth: FirebaseAuth
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Empty)
@@ -27,19 +26,14 @@ class LoginViewModel @Inject constructor(
     fun login(email: String, password: String) {
         viewModelScope.launch {
             if (isValidFields(email, password)) {
-                firebaseAuth.signInWithEmailAndPassword(
-                    email,
-                    password
-                ).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        viewModelScope.launch {
-                            _uiEvent.emit(LoginViewEvent.NavigateToMain)
+                loginUseCase.invoke(LoginUseCaseParams(email, password)).collect {
+                    when (it) {
+                        is LoginUseCaseState.Loading -> {}
+                        is LoginUseCaseState.Error -> {
+                            _uiEvent.emit(LoginViewEvent.ShowError(it.error.toString()))
                         }
-
-                    } else {
-                        viewModelScope.launch {
-                            _uiEvent.emit(LoginViewEvent.ShowError(task.exception?.message.toString()))
+                        is LoginUseCaseState.Success -> {
+                            _uiEvent.emit(LoginViewEvent.NavigateToMain)
                         }
                     }
                 }

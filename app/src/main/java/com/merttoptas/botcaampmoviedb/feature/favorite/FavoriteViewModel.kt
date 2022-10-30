@@ -61,7 +61,7 @@ class FavoriteViewModel @Inject constructor(
 
             val currentData = (_uiState.value as FavoriteViewState.Success).data
             if (updateQuery != "") {
-                currentData?.let {
+                currentData.let {
                     val filteredList = it.filter {
                         it.title?.lowercase(Locale.getDefault())?.contains(updateQuery) ?: false
                     }
