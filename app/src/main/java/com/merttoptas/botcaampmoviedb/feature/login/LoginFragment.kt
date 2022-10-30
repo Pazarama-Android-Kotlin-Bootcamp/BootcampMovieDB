@@ -39,6 +39,11 @@ class LoginFragment : Fragment() {
                 viewModel.uiEvent.collect {
                     when (it) {
                         is LoginViewEvent.NavigateToMain -> {
+                            navController?.navigate(
+                                R.id.action_loginFragment_to_homeFragment,
+                                null,
+                                androidx.navigation.NavOptions.Builder().setPopUpTo(0, true).build()
+                            )
                             Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT)
                                 .show()
                         }
