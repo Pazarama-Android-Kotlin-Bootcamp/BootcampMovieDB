@@ -1,21 +1,17 @@
 package com.merttoptas.botcaampmoviedb.feature.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import com.merttoptas.botcaampmoviedb.R
 import com.merttoptas.botcaampmoviedb.databinding.FragmentHomeBinding
-import com.merttoptas.botcaampmoviedb.databinding.ItemPopularMovieLayoutBinding
 import com.merttoptas.botcaampmoviedb.feature.home.adapter.HomePopularMovieAdapter
 import com.merttoptas.botcaampmoviedb.feature.home.adapter.OnPopularMovieClickListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -68,11 +64,11 @@ class HomeFragment : Fragment(), OnPopularMovieClickListener {
         }
     }
 
-    override fun onMovieClick(id: String) {
+    override fun onMovieClick(id: Int?) {
         TODO("Not yet implemented")
     }
 
-    override fun onFavoriteClick(id: String) {
-        TODO("Not yet implemented")
+    override fun onFavoriteClick(id: Int?, isFavorite:Boolean) {
+        viewModel.onFavoriteMovie(id, isFavorite)
     }
 }

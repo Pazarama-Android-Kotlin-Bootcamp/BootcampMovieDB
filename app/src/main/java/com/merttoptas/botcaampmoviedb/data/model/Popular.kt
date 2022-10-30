@@ -33,3 +33,11 @@ data class Popular(
     @SerializedName("vote_count")
     val voteCount: Int?
 )
+
+data class PopularDTO(
+    val id: Int?,
+    val posterPath: String?,
+    val title: String?,
+    val overview: String?,
+    var isFavorite: Boolean = false
+)
