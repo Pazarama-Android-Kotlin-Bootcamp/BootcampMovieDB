@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.merttoptas.botcaampmoviedb.MainActivity
+import com.merttoptas.botcaampmoviedb.feature.main.MainActivity
 import com.merttoptas.botcaampmoviedb.R
 import com.merttoptas.botcaampmoviedb.feature.onboarding.OnBoardingActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +18,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        navigateToMain()
 
         lifecycleScope.launchWhenResumed {
             launch {
@@ -28,21 +27,20 @@ class SplashActivity : AppCompatActivity() {
                             navigateToOnBoarding()
                         }
                         is SplashViewEvent.NavigateToMain -> {
-                            navigateToMain()
+                            navigateToMain(it.isNavigateHome)
                         }
-                        is SplashViewEvent.NavigateToLogin -> {
 
-                        }
                     }
                 }
             }
         }
     }
 
-    private fun navigateToMain() {
+    private fun navigateToMain(isNavigateHome: Boolean) {
         lifecycleScope.launch {
             delay(2000)
             val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            intent.putExtra(MainActivity.KEY_NAVIGATE_HOME, isNavigateHome)
             startActivity(intent)
             finish()
         }

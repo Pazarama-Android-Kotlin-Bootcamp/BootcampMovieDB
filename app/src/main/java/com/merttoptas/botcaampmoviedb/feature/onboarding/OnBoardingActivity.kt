@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
-import com.merttoptas.botcaampmoviedb.MainActivity
+import com.merttoptas.botcaampmoviedb.feature.main.MainActivity
 import com.merttoptas.botcaampmoviedb.R
 import com.merttoptas.botcaampmoviedb.databinding.ActivityOnboardingBinding
 import com.merttoptas.botcaampmoviedb.feature.onboarding.adapter.OnBoardingAdapter
@@ -73,6 +73,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun navigateToMain() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(MainActivity.KEY_NAVIGATE_HOME, false)
         startActivity(intent)
         finish()
     }

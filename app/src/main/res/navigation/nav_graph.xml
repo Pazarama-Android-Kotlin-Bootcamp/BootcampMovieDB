@@ -3,21 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.merttoptas.botcaampmoviedb.feature.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login">
+        android:id="@+id/homeFragment"
+        android:name="com.merttoptas.botcaampmoviedb.feature.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_login_graph"
+            app:destination="@id/login_graph" />
     </fragment>
 
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.merttoptas.botcaampmoviedb.feature.register.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        android:id="@+id/favoriteFragment"
+        android:name="com.merttoptas.botcaampmoviedb.feature.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
+
+    <include app:graph="@navigation/login_graph" />
+
 </navigation>
