@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import com.merttoptas.botcaampmoviedb.data.model.PopularDTO
 import com.merttoptas.botcaampmoviedb.databinding.FragmentHomeBinding
 import com.merttoptas.botcaampmoviedb.feature.home.adapter.HomePopularMovieAdapter
 import com.merttoptas.botcaampmoviedb.feature.home.adapter.OnPopularMovieClickListener
@@ -68,7 +69,7 @@ class HomeFragment : Fragment(), OnPopularMovieClickListener {
         TODO("Not yet implemented")
     }
 
-    override fun onFavoriteClick(id: Int?, isFavorite:Boolean) {
-        viewModel.onFavoriteMovie(id, isFavorite)
+    override fun onFavoriteClick(data: PopularDTO) {
+        viewModel.onFavoriteMovie(data)
     }
 }

@@ -76,29 +76,36 @@ class HomeViewModel @Inject constructor(
         awaitClose { callBack.isCanceled() }
     }
 
-    fun onFavoriteMovie(id: Int?, isFavorite: Boolean) {
+    fun onFavoriteMovie(data: PopularDTO) {
         viewModelScope.launch {
             val userId = firebaseAuth.currentUser?.uid
-            if (isFavorite) {
-                deleteMovie(userId.toString(), id)
+            if (data.isFavorite) {
+                deleteMovie(userId.toString(), data.id)
             } else {
-                insertMovie(userId.toString(), id)
+                insertMovie(userId.toString(), data)
             }
 
         }
     }
 
-    private fun insertMovie(userId: String, id: Int?) {
+    private fun insertMovie(userId: String, data: PopularDTO) {
         fireStore.collection("favoriteMovie").document(userId.toString()).collection("movie")
             .let { ref ->
-                ref.document("$id")
-                    .set(mapOf("movieId" to id))
+                ref.document("${data.id}")
+                    .set(
+                        mapOf(
+                            "movieId" to "${data.id}",
+                            "title" to data.title,
+                            "overview" to data.overview,
+                            "posterPath" to data.posterPath
+                        )
+                    )
 
                     .addOnSuccessListener { documentReference ->
                         viewModelScope.launch {
                             _uiState.value =
                                 HomeViewState.Success((_uiState.value as HomeViewState.Success).popularMovies?.map { safeList ->
-                                    if (safeList?.id == id) {
+                                    if (safeList?.id == data.id) {
                                         safeList.isFavorite = true
                                     }
                                     safeList

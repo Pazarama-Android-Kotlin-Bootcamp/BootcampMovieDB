@@ -51,5 +51,5 @@ class HomePopularMovieAdapter(private val listener: OnPopularMovieClickListener)
 
 interface OnPopularMovieClickListener {
     fun onMovieClick(id: Int?)
-    fun onFavoriteClick(id: Int?, isFavorite: Boolean)
+    fun onFavoriteClick(popularDTO: PopularDTO)
 }

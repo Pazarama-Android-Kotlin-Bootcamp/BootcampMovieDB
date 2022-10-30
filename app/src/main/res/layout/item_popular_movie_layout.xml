@@ -82,7 +82,7 @@
                     android:id="@+id/ivFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> listener.onFavoriteClick(dataHolder.id, dataHolder.isFavorite)}"
+                    android:onClick="@{() -> listener.onFavoriteClick(dataHolder)}"
                     android:src="@{dataHolder.isFavorite ? @drawable/ic_baseline_favorite_red : @drawable/ic_baseline_favorite_24}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
